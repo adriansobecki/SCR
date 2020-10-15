@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sciezka=$(pwd)/pliki_do_2
+adresy=$(pwd)/pliki_do_2/adresy.txt
+
+cat $adresy | while read linia
+do
+	cat $sciezka/tresc.txt | mutt -s "Okna" $linia -a $sciezka/spec*.pdf
+done

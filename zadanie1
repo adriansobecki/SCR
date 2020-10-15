@@ -1,0 +1,11 @@
+#!/bin/bash
+
+LC_ALL=C
+
+dzien=$(date +%w)
+
+if (( $dzien == 0 || $dzien == 6 )); then
+    echo "Weekend"
+else
+    echo "Dzien roboczy"
+fi

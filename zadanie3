@@ -1,0 +1,5 @@
+#!/bin/bash
+
+dni=$[$2-1]
+echo $dni
+find ~ -type f -mtime $2 -name $1 -exec tar -cvf $3 "{}" +
