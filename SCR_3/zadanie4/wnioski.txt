@@ -1,3 +1,7 @@
+mknod test p
+cat > test x2
+cat test x2
+
 dane sie mieszaja, raz sa odczytane za pomoca jednego procesu, raz za pomoca drugiego
 
 
