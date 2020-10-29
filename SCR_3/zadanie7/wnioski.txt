@@ -1,0 +1,25 @@
+nice -5 ./s1.sh & ./s2.sh &
+
+wynik:
+skrypt2
+skrypt1
+
+ps -l -t 0
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2151    2144  0  80   0 -  3418 do_wai pts/0    00:00:00 bash
+4 T     0    2903    2151  0  80   0 -  3482 -      pts/0    00:00:00 sudo
+0 S  1000    2961    2151  0  80   0 -   652 do_wai pts/0    00:00:00 s1.sh
+0 S  1000    2967    2961  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+renice -10 2961
+renice: failed to set priority for 2961 (process ID): Permission denied
+sudo renice -10 2961
+2961 (process ID) old priority 0, new priority -10
+ps -l -t 0
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2151    2144  0  80   0 -  3418 do_wai pts/0    00:00:00 bash
+4 T     0    2903    2151  0  80   0 -  3482 -      pts/0    00:00:00 sudo
+0 S  1000    2961    2151  0  70 -10 -   652 do_wai pts/0    00:00:00 s1.sh
+0 S  1000    2982    2961  0  70 -10 -  2652 hrtime pts/0    00:00:00 sleep
+
+
+

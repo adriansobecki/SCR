@@ -1,0 +1,11 @@
+dane sie mieszaja, raz sa odczytane za pomoca jednego procesu, raz za pomoca drugiego
+
+
+procesy odczytujace czekaja na dane tak dlugo jak dlugo jest otwarty chociaz jeden proces
+piszacy, w przypadku zakonczenia pracy wszystkich procesow piszacych procesy odczytujace
+automatycznie koncza swoja prace
+
+
+proces piszacy czeka wtedy kiedy istnieje chociaz jeden proces ktory te dane odczytuje,
+w przypadku zakonczenia pracy wszystkich procesow odczytujacych i proby przeslania danych
+poprzez potok procesy piszace koncza swoja prace

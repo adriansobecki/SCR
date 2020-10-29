@@ -1,0 +1,3 @@
+Tak jak w poleceniu, w przypadku przechwytywania sygnalow 1-15 nie jestesmy w stanie zabic
+procesu wysylajac wlasnie takie sygnaly. Wywolanie polecenia "kill -9 PID" zabija proces bez
+wplywu na to jakie sygnaly przechwytujemy. 

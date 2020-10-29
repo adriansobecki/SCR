@@ -1,0 +1,14 @@
+
+./s1.sh |cat|cat
+ps -l -t 0
+
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2651    2644  0  80   0 -  3385 do_wai pts/0    00:00:00 bash
+0 S  1000    3398    2651  0  80   0 -  3039 do_wai pts/0    00:00:00 s1.sh
+0 S  1000    3399    2651  0  80   0 -  2688 pipe_w pts/0    00:00:00 cat
+0 S  1000    3400    2651  0  80   0 -  2688 pipe_w pts/0    00:00:00 cat
+0 S  1000    3423    3398  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+
+
+wszystkie nowe procesy (s1.sh, cat i drugi cat) maja tego samego rodzica ktorym
+jest ten sam terminal z ktorego zostaly wywolane

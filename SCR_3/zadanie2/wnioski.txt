@@ -1,0 +1,40 @@
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2651    2644  0  80   0 -  3385 do_wai pts/0    00:00:00 bash
+0 R  1000    2781    2651  0  80   0 -  3484 -      pts/0    00:00:00 ps
+
+
+./s1.sh &
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2651    2644  0  80   0 -  3385 do_wai pts/0    00:00:00 bash
+0 S  1000    2782    2651  0  80   0 -  3006 do_wai pts/0    00:00:00 s1.sh
+0 S  1000    2783    2782  0  80   0 -  3006 do_wai pts/0    00:00:00 s2.sh
+0 S  1000    2784    2782  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 S  1000    2785    2783  0  80   0 -  3006 do_wai pts/0    00:00:00 s3.sh
+0 S  1000    2786    2783  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 S  1000    2787    2785  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 R  1000    2788    2651  0  80   0 -  3484 -      pts/0    00:00:00 ps
+
+kill 2783
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2651    2644  0  80   0 -  3385 do_wai pts/0    00:00:00 bash
+0 S  1000    2782    2651  0  80   0 -  3006 do_wai pts/0    00:00:00 s1.sh
+0 S  1000    2784    2782  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 S  1000    2785    1123  0  80   0 -  3006 do_wai pts/0    00:00:00 s3.sh
+0 S  1000    2786    1123  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 S  1000    2787    2785  0  80   0 -  2652 hrtime pts/0    00:00:00 sleep
+0 R  1000    2789    2651  0  80   0 -  3484 -      pts/0    00:00:00 ps
+
+
+ps -p 1123
+    PID TTY          TIME CMD
+   1123 ?        00:00:00 systemd
+
+rodzicem s1.sh jest terminal na ktorym zostalo wykonane polecenie
+rodzicem s2.sh jest proces s1.sh
+rodzicem s3.sh jest proces s2.sh
+
+wywolanie kill s2.sh sprawia ze s3.sh traci swojego rodzica, jego funkcje przejmuje
+proces 1123 [systemd] (nastepca init)

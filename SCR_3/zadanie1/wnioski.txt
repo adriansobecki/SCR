@@ -1,0 +1,8 @@
+ps -l
+ps -f
+
+ps -p [PID]
+ps -t [nr. terminala]
+ps -u [user]
+ps -u 1000 |wc -l
+pgrep sshd |wc -l

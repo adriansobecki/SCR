@@ -1,0 +1,10 @@
+
+
+kill -STOP PID  sygnal SIGSTOP, zatrzymuje prace danego procesu
+kill -CONT PID  sygnal SIGCONT, wznawia prace danego procesu, pracuje tak samo jak przed zatrzymaniem procesu
+
+ctrl+Z  -> zatrzymuje prace danego procesu
+fg nr   -> kontynuuje prace procesu, uruchamia nie w tle
+bg nr   -> kontynuuje prace procesu, uruchamia go w tle
+
+kill -CONT bardziej podobne do bg, proces wznowiony za pomoca kill -CONT sprawia iz proces uruchamia sie w tle, tak samo jak w przypadku wywolania bg
