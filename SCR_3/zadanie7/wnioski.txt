@@ -1,8 +1,3 @@
-nice -5 ./s1.sh & ./s2.sh &
-
-wynik:
-skrypt2
-skrypt1
 
 ps -l -t 0
 F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
@@ -20,6 +15,87 @@ F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
 4 T     0    2903    2151  0  80   0 -  3482 -      pts/0    00:00:00 sudo
 0 S  1000    2961    2151  0  70 -10 -   652 do_wai pts/0    00:00:00 s1.sh
 0 S  1000    2982    2961  0  70 -10 -  2652 hrtime pts/0    00:00:00 sleep
+
+
+
+
+
+
+
+
+
+
+
+
+
+Maszyna wirtualna uruchomiona jako 1 "procesor"
+uruchamiamy programy do sortowania, pierwszy sie wykona quicksort, nastepnie mergesort. 
+Mozna zauwazyc te same zuzycie procesora przez oba procesy.
+
+./quick.out & ./merge.out &
+[1] 2284
+[2] 2285
+
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2157    1999  0  80   0 -  3451 do_wai pts/1    00:00:00 bash
+0 R  1000    2284    2157 48  80   0 - 99171 -      pts/1    00:00:06 quick.out
+0 R  1000    2285    2157 48  80   0 - 100166 -     pts/1    00:00:06 merge.out
+0 R  1000    2286    2157  0  80   0 -  3484 -      pts/1    00:00:00 ps
+quick time: 35.7914s
+merge time: 42.2908s
+
+jobs
+[1]-  Done                    ./quick.out
+[2]+  Done                    ./merge.out
+
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000    2157    1999  0  80   0 -  3451 do_wai pts/1    00:00:00 bash
+0 R  1000    2287    2157  0  80   0 -  3484 -      pts/1    00:00:00 ps
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Przy zmianie dokonanej za pomoca polecenia nice wykona sie jako pierwszy proces o wiekszym
+priorytecie tzn. mergesort, a nastepnie quicksort. Wywolujac komende ps -l widac zuzycie 
+procesora na kazdy z tych procesow. Quicksort ma zuzycie rowne 0 w momencie wykonywania 
+sie mergesort.
+
+
+nice -n 15 ./quick.out & nice -n -15 ./merge.out &
+[1] 2305
+[2] 2306
+
+jobs
+[1]-  Running                 nice -n 15 ./quick.out &
+[2]+  Running                 nice -n -15 ./merge.out &
+
+ps -l
+F S   UID     PID    PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+4 S     0    2016    2009  0  80   0 -  3483 do_wai pts/0    00:00:00 su
+4 S     0    2021    2016  0  80   0 -  3157 do_wai pts/0    00:00:00 bash
+0 R     0    2305    2021  0  95  15 -  2448 -      pts/0    00:00:00 quick.out
+4 R     0    2306    2021 99  65 -15 - 100166 -     pts/0    00:00:03 merge.out
+4 R     0    2307    2021  0  80   0 -  3484 -      pts/0    00:00:00 ps
+
+merge time: 26.6127s
+quick time: 17.6527s
+jobs
+[1]-  Done                    nice -n 15 ./quick.out
+[2]+  Done                    nice -n -15 ./merge.out
 
 
 
