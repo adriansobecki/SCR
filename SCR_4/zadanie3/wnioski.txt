@@ -1,0 +1,41 @@
+na diablo man proc.1
+
+pflags - flagi, posiadane sygnaly
+pcred - credentials (effective, real,  saved UIDs and GIDs)
+pldd - dynamiczne biblioteki dla procesu
+psig - sygnaly i uchwyty procesu
+pstack - adres stosu?
+pfiles - informacje o plikach dla procesu
+pwdx - aktualny katalog roboczy procesu
+
+
+przyklad wywolania:
+
+diablo-bash-3.2$ bash
+diablobash-4.3$ ps -l
+ F S    UID   PID  PPID   C PRI NI     ADDR     SZ    WCHAN TTY         TIME CMD
+ 0 S  15515   980   978   0  40 20        ?    445        ? pts/55      0:00 bash
+ 0 S  15515  2484   980   0  50 20        ?    588        ? pts/55      0:00 bash
+ 0 O  15515  2485  2484   0  50 20        ?    230          pts/55      0:00 ps
+diablobash-4.3$ pfiles 2484
+2484:   bash
+  Current rlimit: 256 file descriptors
+   0: S_IFCHR mode:0620 dev:351,0 ino:12583026 uid:15515 gid:7 rdev:24,55
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:55
+   1: S_IFCHR mode:0620 dev:351,0 ino:12583026 uid:15515 gid:7 rdev:24,55
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:55
+   2: S_IFCHR mode:0620 dev:351,0 ino:12583026 uid:15515 gid:7 rdev:24,55
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:55
+   3: S_IFDOOR mode:0444 dev:360,0 ino:55 uid:0 gid:0 size:0
+      O_RDONLY|O_LARGEFILE FD_CLOEXEC  door to nscd[221]
+      /var/run/name_service_door
+ 255: S_IFCHR mode:0620 dev:351,0 ino:12583026 uid:15515 gid:7 rdev:24,55
+      O_RDWR|O_NOCTTY|O_LARGEFILE FD_CLOEXEC
+      /devices/pseudo/pts@0:55
+diablobash-4.3$ 
+
+
+

@@ -1,0 +1,19 @@
+
+   Wywolanie programu bez opoznienia w petli
+
+   2483 adrian    20   0  820500  55584  39276 R  81,4   1,8   0:33.07 gnome-t+ 
+   3104 adrian    20   0    2488    580    516 S  15,0   0,0   0:05.70 program+ 
+   1140 adrian    20   0  866784  98888  52216 S  10,0   3,2   0:13.51 Xorg     
+   1443 adrian    20   0 4799596 353032 131364 S   9,6  11,5   0:39.32 gnome-s+ 
+   
+   
+   Wywolanie programu z opoznieniem w petli
+   1140 adrian    20   0  877140 108304  55996 S  19,9   3,5   0:31.33 Xorg           
+   1443 adrian    20   0 4803340 361448 135432 S  19,2  11,8   1:22.29 gnome-shell    
+   3254 adrian    20   0    2488    504    440 R  15,2   0,0   0:02.01 program2.out   
+   2483 adrian    20   0  822056  56724  39716 S  14,6   1,9   0:44.88 gnome-termina+ 
+   1350 adrian    20   0  223420   2700   2336 S   0,3   0,1   0:02.61 VBoxClient     
+   1767 adrian    20   0 1231204 218052  46904 S   0,3   7,1   0:09.51 snap-store  
+   
+   zmiana czestotliwosci odswiezania programu top 
+   top -d (czas) np. dla 0.1sec top -d 0.1

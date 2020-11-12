@@ -1,0 +1,60 @@
+
+
+diablo-bash-3.2$ psig 10326
+10326:  /bin/sh ./s.sh
+HUP     ignored
+INT     caught  0x16d38         0
+QUIT    caught  0x16d38         0
+ILL     caught  0x16d38         0
+TRAP    caught  0x16d38         0
+
+
+./s1.sh |cat |cat
+
+
+diablo-bash-3.2$ ps -u asobecki
+   PID TTY         TIME CMD
+  8521 ?           0:00 sshd
+ 10593 pts/64      0:00 s1.sh
+   980 pts/55      0:00 bash
+  8523 pts/58      0:00 bash
+ 10610 pts/58      0:00 ps
+  7375 ?           0:00 sshd
+ 10601 pts/64      0:00 sleep
+   978 ?           0:00 sshd
+ 10594 pts/64      0:00 cat
+  7377 pts/64      0:00 bash
+  2484 pts/55      0:00 bash
+ 10595 pts/64      0:00 cat
+
+
+
+diablo-bash-3.2$ pfiles 10594
+10594:  cat
+  Current rlimit: 256 file descriptors
+   0: S_IFIFO mode:0000 dev:349,0 ino:2122681 uid:15515 gid:1018 size:0
+      O_RDWR
+   1: S_IFIFO mode:0000 dev:349,0 ino:2122682 uid:15515 gid:1018 size:0
+      O_RDWR
+   2: S_IFCHR mode:0620 dev:351,0 ino:12583044 uid:15515 gid:7 rdev:24,64
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:64
+      
+diablo-bash-3.2$ pfiles 10595
+10595:  cat
+  Current rlimit: 256 file descriptors
+   0: S_IFIFO mode:0000 dev:349,0 ino:2122682 uid:15515 gid:1018 size:0
+      O_RDWR
+   1: S_IFCHR mode:0620 dev:351,0 ino:12583044 uid:15515 gid:7 rdev:24,64
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:64
+   2: S_IFCHR mode:0620 dev:351,0 ino:12583044 uid:15515 gid:7 rdev:24,64
+      O_RDWR|O_NOCTTY|O_LARGEFILE
+      /devices/pseudo/pts@0:64
+      
+      
+ ten ktory ma 2x FIFO (0,1) to ten w srodku cat
+ ten ktorego 1:S_IFCHR to cat ktory wyswietla na terminal
+      
+      
+
