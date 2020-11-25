@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   else if(pid==0) //kod dziecka
     {
       //printf("pid0");
-      close(fd[1]); //zamkniecie zapisu do bufora
+      close(fd[1]); //zamkniecie zapisu do pipe
       while((read(fd[0], &bufor, BUF_SIZE)) > 0)
 	printf(" #%s# ",bufor);
     }
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     {
       //printf("pidrodzica");
       char c;
-      close(fd[0]); //zamkniecie odczytu z bufora
+      close(fd[0]); //zamkniecie odczytu z pipe
       FILE *fp;
       if ((fp=fopen(argv[1], "r"))==NULL)
 	{
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	if(write(fd[1], &bufor, BUF_SIZE) < 0)
 	  return 1;
 	}
-      close(fd[1]); //zamkniecie zapisu do bufora	
+      close(fd[1]); //zamkniecie zapisu do pipe
       fclose (fp); /* zamknij plik */
     }
 }
