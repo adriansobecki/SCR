@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-#define BUF_SIZE 2
+#define BUF_SIZE 10
 
 int main(int argc, char *argv[])
 {
@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
       close(fd[1]); //zamkniecie zapisu do bufora
       while((read(fd[0], &bufor, BUF_SIZE)) > 0)
 	printf(" #%s# ",bufor);
-      close(fd[1]); //zamkniecie zapisu do bufora
     }
   else //kod rodzica
     {
