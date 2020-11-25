@@ -27,7 +27,6 @@ int main(int argc, char *argv[])
     }
   else //kod rodzica
     {
-      char c;
       close(fd[0]); //zamkniecie odczytu z pipe
       FILE *fp;
       if ((fp=fopen(argv[1], "r"))==NULL)
