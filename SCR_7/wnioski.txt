@@ -1,0 +1,24 @@
+Zadanie 1, Zadanie 2
+Kolejnosc w ktorej sa wykonywane watki jest losowa.
+
+
+Zadanie 3
+rc = pthread_create(&threads[t], NULL, PrintHello, (void *) &t);
+taskid = *(long*)threadid;
+
+rc = pthread_create(&threads[t], NULL, PrintHello, (void *) t);
+taskid = (long)threadid;
+
+
+Zadanie 4
+     for(int t = 0; t < NUM_THREADS; t++)
+   {
+      	pthread_join(threads[t], NULL);
+	printf("Zamykam watek nr: %d\n", t);
+   }
+   
+   brakuje "odebrania" lub pthread_exit(NULL) w funkcji main na koncu.
+   
+
+
+   
